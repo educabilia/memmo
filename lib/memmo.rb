@@ -1,4 +1,12 @@
 class Memmo
+  def self.enabled
+    @enabled
+  end
+
+  def self.enabled=(value)
+    @enabled = value
+  end
+
   def initialize
     @mutex = Mutex.new
     @loaders = {}
@@ -13,6 +21,8 @@ class Memmo
   end
 
   def get(name)
+    return refresh(name)[1] unless Memmo.enabled
+
     if !@cache.include?(name) || (@loaders[name][0][:ttl] && Time.now - @cache[name][0] > @loaders[name][0][:ttl])
       @mutex.synchronize do
         refresh(name)
@@ -29,6 +39,8 @@ class Memmo
   def [](name)
     get(name)
   end
+
+  self.enabled = true
 
 protected
 

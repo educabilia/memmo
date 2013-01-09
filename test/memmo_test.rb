@@ -47,4 +47,22 @@ class MemmoTest < Test::Unit::TestCase
     assert_equal [1, 2, 3], @memmo.get(:numbers)
     assert_equal 2, calls
   end
+
+  def test_can_be_disabled
+    Memmo.enabled = false
+
+    calls = 0
+
+    @memmo.register(:numbers, ttl: 10) do
+      calls += 1
+    end
+
+    @memmo.get(:numbers)
+
+    assert_equal 2, calls
+  end
+
+  def teardown
+    Memmo.enabled = true
+  end
 end
