@@ -1,4 +1,4 @@
-class Memo
+class Memmo
   def initialize
     @mutex = Mutex.new
     @loaders = {}
