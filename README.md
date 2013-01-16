@@ -42,3 +42,8 @@ require "test/unit"
 
 Memmo.enabled = false
 ```
+
+License
+-------
+
+See `UNLICENSE`. With love, from [Educabilia](http://educabilia.com).
