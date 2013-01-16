@@ -1,3 +1,5 @@
+require "monitor"
+
 class Memmo
   def self.enabled
     @enabled
@@ -8,7 +10,7 @@ class Memmo
   end
 
   def initialize
-    @mutex = Mutex.new
+    @mutex = Monitor.new
     @loaders = {}
     @cache = {}
   end

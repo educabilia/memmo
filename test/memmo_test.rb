@@ -62,6 +62,16 @@ class MemmoTest < Test::Unit::TestCase
     assert_equal 2, calls
   end
 
+  def test_reentrancy
+    @memmo.register(:foo, ttl: 0) do
+      :foo
+    end
+
+    @memmo.register(:bar) do
+      @memmo[:foo]
+    end
+  end
+
   def teardown
     Memmo.enabled = true
   end

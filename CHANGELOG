@@ -1,0 +1,7 @@
+unreleased
+
+* Add support for lock re-entrancy for keys depending on one another.
+
+0.0.1 - 2013-01-09
+
+* Initial release.
