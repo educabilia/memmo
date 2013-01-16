@@ -70,6 +70,9 @@ class MemmoTest < Test::Unit::TestCase
     @memmo.register(:bar) do
       @memmo[:foo]
     end
+
+    assert_equal :foo, @memmo[:foo]
+    assert_equal :foo, @memmo[:bar]
   end
 
   def teardown
